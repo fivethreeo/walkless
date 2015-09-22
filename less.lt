@@ -1,0 +1,120 @@
+StateImport
+StateStringApostrophe
+StateEscapeApostrophe
+StateSelector
+StateParn
+StateEscapeQuotes
+StateStringQuotes
+StateMediaQuery
+TokenCssIdent
+TokenCssDom
+TokenCssClass
+TokenCssId
+TokenCssProperty
+TokenCssVendorProperty
+TokenCssComment
+TokenCssString
+TokenCssColor
+TokenCssFilter
+TokenCssNumber
+TokenCssImportant
+TokenCssVendorHack
+TokenCssUri
+TokenCssMsFilter
+TokenCssMediaType
+TokenCssMediaFeature
+TokenAnd
+TokenNot
+TokenOnly
+TokenLessVariable
+TokenLessComment
+TokenLessOpenFormat
+TokenLessWhen
+TokenLessAnd
+TokenLessNot
+TokenWs
+TokenPopen
+TokenPclose
+TokenSemicolon
+TokenTilde
+TokenColon
+TokenComma
+TokenEopen
+TokenEclose
+TokenIsopen
+TokenIsclose
+TokenBopen
+TokenBclose
+TokenCssFonFace
+TokenLessArguments
+TokenCssKeyframes
+TokenCssPage
+TokenCssMedia
+TokenCssNamespace
+TokenCssViewport
+TokenCssImport
+TokenCssCharset
+%token <
+%token >
+%token =
+%token %
+%token !
+%token /
+%token *
+%token -
+%token +
+%token &
+[TokenCssNumber] = '-?(\d*\.\d+|\d+)(s|%|in|ex|[ecm]m|p[txc]|deg|g?rad|ms?|k?hz|dpi|dpcm|dppx)?'
+[StateSelector][TokenCssClass] = '[_a-z0-9\-]+'
+[StateMediaQuery][TokenBopen] = '\{'
+[TokenCssString] = '"[^"@]*"|\\'[^\\'@]*\\''
+[TokenCssImport]ant = '!\s*important'
+[StateStringQuotes][TokenCssString] = '[^"@]+'
+[TokenCssColor] = '\#[0-9]([0-9a-f]{5}|[0-9a-f]{2})'
+[StateStringQuotes][TokenIsclose] = '"'
+[TokenIsopen] = '"|\\''
+[TokenCssComment] = '(/\*(.|\n|\r)*?\*/)'
+[StateEscapeApostrophe][TokenLessVariable] = '@\{[^@\'\}]+\}'
+[TokenWs] = '[ \t\f\v]+'
+[StateMediaQuery][TokenOnly] = 'only'
+[StateMediaQuery][TokenPopen] = '\('
+[StateMediaQuery][TokenSemicolon] = ';'
+[StateSelector][TokenEclose] = '"|\\''
+[TokenColon] = ':'
+[TokenLessComment] = '//.*'
+[StateStringApostrophe][TokenIsclose] = '\''
+t_error = 'on'
+[StateParn][TokenPclose] = '\)'
+[StateStringQuotes][TokenLessVariable] = '@\{[^@"\}]+\}'
+[StateImport][TokenCssMedia]_type = 'all|aural|braille|handheld|print|projection|screen|tty|tv|embossed|speech'
+[StateMediaQuery][TokenAnd] = 'and'
+[StateParn][TokenCssUri] = 'data:[^\)]+|(([a-z]+://)?((/?[\.a-z:]+[\w\.:]*[\/][\/]?)+|([a-z][\w\.\-]+(\.[a-z0-9]+))(\#[a-z]+)?))+'
+[StateSelector][TokenColon] = ':'
+[StateImport][TokenSemicolon] = ';'
+[TokenPclose] = '\)'
+[StateSelector][TokenWs] = '[ \t\f\v]+'
+[TokenEopen] = '~"|~\\''
+[TokenBclose] = '\}'
+[StateSelector][TokenBopen] = '\{'
+[StateStringApostrophe][TokenLessVariable] = '@\{[^@\'\}]+\}'
+[StateParn][TokenCssIdent] = '(([_a-z]|[\x80-\xff]|\\[0-9a-f]{1,6}|\\[^\r\n\s0-9a-f])([_a-z0-9\-]|[\x80-\xff]|\\[0-9a-f]{1,6}|\\[^\r\n\s0-9a-f])*)'
+[StateStringApostrophe][TokenCssString] = '[^\'@]+'
+[StateMediaQuery][TokenCssMedia]_type = 'all|aural|braille|handheld|print|projection|screen|tty|tv|embossed|speech'
+[StateMediaQuery][TokenCssMediaFeature] = 'width|min-width|max-width|height|min-height|max-height|device-width|min-device-width|max-device-width|device-height|min-device-height|max-device-height|orientation|aspect-ratio|min-aspect-ratio|max-aspect-ratio|device-aspect-ratio|min-device-aspect-ratio|max-device-aspect-ratio|color|min-color|max-color|color-index|min-color-index|max-color-index|monochrome|min-monochrome|max-monochrome|resolution|min-resolution|max-resolution|scan|grid|-webkit-min-device-pixel-ratio|min--moz-device-pixel-ratio|-o-min-device-pixel-ratio|min-device-pixel-ratio'
+t_newline = '[\n\r]+'
+[StateEscapeQuotes][TokenEclose] = '"'
+[TokenLessOpenFormat] = '%\('
+[TokenCssMsFilter] = '(?:progid:|DX\.)[^;\(]*'
+[TokenCssIdent] = '([\-\.\#]?([_a-z]|[\x80-\xff]|\\[0-9a-f]{1,6}|\\[^\s\r\n0-9a-f])([_a-z0-9\-]|[\x80-\xff]|\\[0-9a-f]{1,6}|\\[^\s\r\n0-9a-f])*)|\.'
+[TokenComma] = ','
+[TokenTilde] = '~'
+[StateSelector][TokenCssFilter] = '\[[^\]]*\]|(not|lang|nth-[a-z\-]+)\(.+\)|and[ \t]\([^><\{]+\)'
+[TokenPopen] = '\('
+[TokenSemicolon] = ';'
+[StateEscapeQuotes][TokenLessVariable] = '@\{[^@"\}]+\}'
+[StateSelector][TokenLessVariable] = '@\{[^@\}]+\}'
+[TokenBopen] = '\{'
+[TokenLessVariable] = '@@?[\w-]+|@\{[^@\}]+\}'
+[TokenCssFilter] = '\[[^\]]*\]|(not|lang|nth-[a-z\-]+)\(.+\)|and[ \t]\([^><\{]+\)'
+[StateMediaQuery][TokenNot] = 'not'
+[StateEscapeApostrophe][TokenEclose] = '\''
